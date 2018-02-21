@@ -24,6 +24,7 @@ class Mesh:
     def __init__(self,filename):
         verts, connectivity = self.loadOBJ(filename)
         self.verts=np.array(verts)
+        print(self.verts)
         self.connectivity=np.array(connectivity)
         self.normals=np.zeros(self.connectivity.shape)
         self.node_to_tri=collections.defaultdict(list)
@@ -54,10 +55,10 @@ class Mesh:
             vals = line.split()
             if len(vals)>0:
                 if vals[0] == "v":  
-                    v = map(float, vals[1:4])  
+                    v = list(map(float, vals[1:4])  )
                     verts.append(v)  
                 if vals[0] == "vn":  
-                    n = map(float, vals[1:4])  
+                    n = list(map(float, vals[1:4])  )
                     norms.append(n)  
                 if vals[0] == "f": 
                     con=[]
